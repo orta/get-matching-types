@@ -50,3 +50,15 @@ however, this is a quick command line app that will make a list of all potential
 that exist in NPM for your dependencies
 
 ---
+
+Want to play around?
+
+```sh
+git clone https://github.com/orta/get-matching-types
+cd get-matching-types
+npm install
+
+# This uses Typings for Fetch's type-definitions
+npm install typings --global
+typings install
+```

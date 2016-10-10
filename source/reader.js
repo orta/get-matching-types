@@ -1,4 +1,5 @@
 // @flow
+
 import readJSON from "read-package-json"
 import fetch from "node-fetch"
 
@@ -24,7 +25,7 @@ export default class Reader {
   async getDeps() : Promise<string[]> {
     return new Promise((resolve: any, reject: any) => {
       // This is from the lib that NPM use to read the package.json
-      readJSON("package.json", console.error, false, (error: Error, data: any) => {
+      readJSON(this.path, console.error, false, (error: Error, data: any) => {
         if (error) {
           console.error(`There was an error reading the file: ${error.message}`)
           reject(error)
