@@ -1,0 +1,49 @@
+{
+  "name": "get-matching-types",
+  "version": "0.0.5",
+  "description": "Checks NPM for corresponsing @types/[package] to your Package.json deps",
+  "bin": {
+    "get-matching-types": "distribution/runner.js"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "babel source  --out-dir distribution --source-maps; chmod +x distribution/runner.js",
+    "buildwatch": "babel source --watch --out-dir distribution",
+    "go": "npm run build; npm link; get-matching-types",
+    "lock": "npm install; npm prune; npm dedupe; npm shrinkwrap --dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orta/get-matching-types.git"
+  },
+  "keywords": [
+    "types",
+    "typings",
+    "definitelytyped"
+  ],
+  "author": "orta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/orta/get-matching-types/issues"
+  },
+  "homepage": "https://github.com/orta/get-matching-types#readme",
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-eslint": "^7.0.0",
+    "babel-plugin-transform-flow-strip-types": "^6.8.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-stage-3": "^6.17.0",
+    "eslint": "^3.3.1",
+    "eslint-config-standard": "^6.0.0-beta.3",
+    "eslint-plugin-flowtype": "^2.20.0",
+    "eslint-plugin-standard": "^2.0.0",
+    "flow-bin": "^0.32.0",
+    "jest-cli": "^16.0.0",
+    "eslint-plugin-promise": "^3.0.0"
+  },
+  "dependencies": {
+    "node-fetch": "^1.6.3",
+    "read-package-json": "^2.0.4"
+  }
+}
