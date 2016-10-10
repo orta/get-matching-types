@@ -16,7 +16,6 @@ class TypeResult {
 }
 
 /** A class to run through all of the dependencies in a package.json and echo out if they exist */
-
 export default class Reader {
   path: string
   constructor(path: string) { this.path = path }
@@ -24,6 +23,7 @@ export default class Reader {
   /** Get dependencies from the path */
   async getDeps() : Promise<string[]> {
     return new Promise((resolve: any, reject: any) => {
+      // This is from the lib that NPM use to read the package.json
       readJSON("package.json", console.error, false, (error: Error, data: any) => {
         if (error) {
           console.error(`There was an error reading the file: ${error.message}`)
@@ -31,6 +31,7 @@ export default class Reader {
           return
         }
 
+        // Pull out the keys
         const deps = Object.keys(data.dependencies)
         const devDeps = Object.keys(data.devDependencies)
         resolve([...deps, ...devDeps])
@@ -49,7 +50,7 @@ export default class Reader {
   /** Entry point to the commandline API */
   async run(): Promise<bool> {
     let deps = await this.getDeps()
-    console.log(`Starting search for ${deps.length} deps.`)
+    console.log(`Starting search for ${deps.length} deps.\n`)
 
     let successes:TypeResult[] = []
     for (let dep of deps) {
@@ -62,11 +63,12 @@ export default class Reader {
 
     if (successes) {
       let names = successes.map((result: TypeResult) => { return "@types/" + result.dep })
-      console.log("You can install the following types:")
-      console.log(`$ npm install ${names.join(" ")} --save --only=dev`)
+      console.log("\nYou can install the following types:")
+      console.log(`\n  $ npm install ${names.join(" ")} --save --only=dev`)
     } else {
       console.log("Could not find any types")
     }
+
     return true
   }
 }
