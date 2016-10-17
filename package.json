@@ -1,6 +1,6 @@
 {
   "name": "get-matching-types",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Checks NPM for corresponsing @types/[package] to your Package.json deps",
   "bin": {
     "get-matching-types": "distribution/runner.js"
